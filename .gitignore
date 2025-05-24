@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+*.tsbuildinfo
+
+# Packaged extension
+*.vsix
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+._*
+Thumbs.db
+
+# Test output (if you add tests later)
+coverage/
+
+# VS Code specific (optional - be careful not to ignore shared settings like launch.json)
+# .vscode/settings.json # Uncomment if you want to ignore local settings
+# .vscode/tasks.json    # Uncomment if tasks are local
