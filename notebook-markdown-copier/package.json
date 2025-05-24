@@ -1,0 +1,63 @@
+{
+  "name": "notebook-markdown-copier",
+  "displayName": "Notebook Markdown Copier",
+  "description": "A VS Code extension to copy selected Jupyter Notebook cells as a single markdown block and paste markdown back into a notebook as distinct cells.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onNotebook:jupyter-notebook",
+    "onNotebook:python"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "notebook-markdown-copier.copyAsMarkdown",
+        "title": "Notebook: Copy Selected Cells as Markdown"
+      },
+      {
+        "command": "notebook-markdown-copier.pasteFromMarkdown",
+        "title": "Notebook: Paste Markdown as Cells"
+      }
+    ],
+    "menus": {
+      "notebook/cell/context": [
+        {
+          "command": "notebook-markdown-copier.copyAsMarkdown",
+          "when": "notebookEditorHasSelection",
+          "group": "2_copy@1"
+        },
+        {
+          "command": "notebook-markdown-copier.pasteFromMarkdown",
+          "group": "2_copy@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.76.0",
+    "@types/glob": "^8.1.0",
+    "@types/node": "18.x.x",
+    "eslint": "^8.57.0", 
+    "@typescript-eslint/parser": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "glob": "^8.1.0",
+    "typescript": "^5.4.5",
+    "@types/mocha": "^10.0.6",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}

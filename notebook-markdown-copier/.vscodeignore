@@ -1,0 +1,34 @@
+.vscode/**
+.vscode-test/**
+node_modules/
+out/test/**
+# Development configuration files
+.eslintrc.json
+**/.gitattributes
+**/.gitmodules
+**/.lintstagedrc.js
+**/.prettierignore
+**/.prettierrc.json
+**/jest.config.js
+**/jest.setup.js
+**/renovate.json
+**/wallaby.js
+.eslintignore
+# Build and test artifacts
+dist/
+coverage/
+.nyc_output/
+*.vsix
+*.tsbuildinfo
+*.log
+# OS-specific
+**/.DS_Store
+# Package manager specific
+.husky/
+.yarnrc.yml
+yarn.lock
+.npmrc
+.yarnclean
+.yarn/
+.pnp.cjs
+.pnp.loader.mjs

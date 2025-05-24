@@ -1,0 +1,8 @@
+1
+Notebook Markdown Copier
+notebook-markdown-copier
+A VS Code extension to copy selected Jupyter Notebook cells as a single markdown block and paste markdown back into a notebook as distinct cells.
+n
+n
+n
+npm
