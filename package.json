@@ -37,6 +37,17 @@
           "group": "2_copy@2"
         }
       ]
+    },
+    "configuration": {
+      "title": "Notebook Markdown Copier",
+      "properties": {
+        "notebookMarkdownCopier.recognizedLanguages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["python"],
+          "description": "List of code‐block languages that the extension will convert into Code cells when pasting markdown."
+        }
+      }
     }
   },
   "scripts": {
