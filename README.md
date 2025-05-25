@@ -34,6 +34,12 @@ This extension is designed to streamline the process of sharing notebook content
     *   Alternatively, open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for "Notebook: Paste Markdown as Cells".
 6.  The markdown from your clipboard will be parsed and inserted as new cells. A notification will confirm if successful, or show an error if the content is not parsable.
 
+## Settings
+
+### recognizedLanguages
+A list of language identifiers (e.g. `python`, `javascript`, `r`) that will be turned into Code cells when pasting markdown. Code fences with other languages are pasted as plain Markdown.
+**Default**: `["python"]`
+
 ## Requirements
 
 *   Visual Studio Code version `^1.76.0` or higher.

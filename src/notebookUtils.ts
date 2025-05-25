@@ -94,6 +94,7 @@ export async function pasteFromMarkdownHandler() {
     const codeBlockRegex = /^```([a-zA-Z0-9_\-]+)?\n([\s\S]+?)^```$/gm;
     let lastIndex = 0;
     let match;
+    const recognizedLanguages = getRecognizedLanguages();
 
     try {
         while ((match = codeBlockRegex.exec(clipboardText)) !== null) {
@@ -109,7 +110,12 @@ export async function pasteFromMarkdownHandler() {
             const language = match[1] || 'plaintext'; // Default to 'plaintext' if language is not specified
             const codeContent = match[2].trim(); // Trim to remove leading/trailing newlines within the block
             if (codeContent) { // Ensure code content is not just whitespace
-                 newCellsArray.push(new vscode.NotebookCellData(vscode.NotebookCellKind.Code, codeContent, language));
+                if (recognizedLanguages.includes(language)) {
+                    newCellsArray.push(new vscode.NotebookCellData(vscode.NotebookCellKind.Code, codeContent, language));
+                } else {
+                    const markdownCellContent = `\`\`\`${language}\n${codeContent}\n\`\`\``;
+                    newCellsArray.push(new vscode.NotebookCellData(vscode.NotebookCellKind.Markup, markdownCellContent, 'markdown'));
+                }
             }
             lastIndex = codeBlockRegex.lastIndex;
         }
@@ -145,4 +151,12 @@ export async function pasteFromMarkdownHandler() {
         console.error('Failed to parse or paste Markdown:', error);
         vscode.window.showErrorMessage('Failed to parse or paste cells from Markdown. Check console for details.');
     }
+}
+
+function getRecognizedLanguages(): string[] {
+  const cfg = vscode.workspace.getConfiguration('notebookMarkdownCopier');
+  // The VS Code API might type this as any[] or T[] | undefined,
+  // so ensure to handle the undefined case and provide a default.
+  const languages = cfg.get<string[]>('recognizedLanguages');
+  return languages === undefined ? ['python'] : languages;
 }

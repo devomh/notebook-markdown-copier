@@ -14,6 +14,16 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(copyDisposable);
     context.subscriptions.push(pasteDisposable);
+
+    context.subscriptions.push(
+        vscode.workspace.onDidChangeConfiguration(e => {
+            if (e.affectsConfiguration('notebookMarkdownCopier.recognizedLanguages')) {
+                console.log('Notebook Markdown Copier: recognizedLanguages setting has changed. It will be applied on the next paste.');
+                // Optionally, inform the user via a more visible notification:
+                // vscode.window.showInformationMessage('Notebook Markdown Copier: Recognized languages setting updated. Changes will apply on next paste.');
+            }
+        })
+    );
 }
 
 export function deactivate() {}
